@@ -16,7 +16,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "This app needs camera access to capture photos for text extraction.",
         "NSPhotoLibraryUsageDescription": "This app needs photo library access to select images for text extraction."
-      }
+      },
+      "bundleIdentifier": "com.anonymous.ocrtextextractor"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,10 +26,12 @@
       },
       "edgeToEdgeEnabled": true,
       "permissions": [
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.anonymous.ocrtextextractor"
     },
     "web": {
       "bundler": "metro",
