@@ -55,7 +55,9 @@
           "photosPermission": "This app needs access to your photos to extract text from images.",
           "cameraPermission": "This app needs camera access to capture photos for text extraction."
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

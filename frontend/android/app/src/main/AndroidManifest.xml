@@ -27,6 +27,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="frontend"/>
+        <data android:scheme="exp+ocr-text-extractor"/>
       </intent-filter>
     </activity>
   </application>

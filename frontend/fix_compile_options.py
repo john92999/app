@@ -1,30 +1,22 @@
-# fix_compile_options.py
-build_gradle_path = "android/app/build.gradle"
+import json
+import os
+import subprocess
 
-with open(build_gradle_path, 'r') as f:
-    lines = f.readlines()
+# 1. Manually inject the dependency into package.json to avoid npm logic errors
+with open('package.json', 'r') as f:
+    pkg = json.load(f)
 
-# Find where to insert compileOptions (after namespace or compileSdk)
-new_lines = []
-inserted = False
+pkg['dependencies']['expo-text-extractor'] = "^0.2.2"
 
-for i, line in enumerate(lines):
-    new_lines.append(line)
-    
-    # Insert after namespace line
-    if 'namespace' in line and not inserted:
-        # Check if compileOptions doesn't already exist
-        if 'compileOptions' not in ''.join(lines):
-            new_lines.append('\n')
-            new_lines.append('    compileOptions {\n')
-            new_lines.append('        sourceCompatibility JavaVersion.VERSION_11\n')
-            new_lines.append('        targetCompatibility JavaVersion.VERSION_11\n')
-            new_lines.append('    }\n')
-            inserted = True
-            print("✅ Added compileOptions")
+with open('package.json', 'w') as f:
+    json.dump(pkg, f, indent=2)
 
-if inserted:
-    with open(build_gradle_path, 'w') as f:
-        f.writelines(new_lines)
-else:
-    print("✅ compileOptions likely already exists or namespace not found")
+print("✅ Manually updated package.json with expo-text-extractor")
+
+# 2. Run install with the bypass flag
+print("⏳ Running forced install...")
+subprocess.run("npm install --legacy-peer-deps", shell=True)
+
+# 3. Clean and Build
+print("🚀 Starting EAS Build...")
+subprocess.run("npx eas-cli build --platform android --profile preview", shell=True)
