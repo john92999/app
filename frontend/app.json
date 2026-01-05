@@ -9,7 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "extra": {
-      "EXPO_BACKEND_URL": "https://handwrite2text.preview.emergentagent.com"
+      "EXPO_BACKEND_URL": "https://handwrite2text.preview.emergentagent.com",
+      "router": {},
+      "eas": {
+        "projectId": "5e57b337-0bfa-4cc3-89ef-45d63dbb3eb7"
+      }
     },
     "ios": {
       "supportsTablet": true,
